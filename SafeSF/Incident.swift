@@ -7,36 +7,50 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Incident {
     
-    var time: NSDate
-    var category: String
-    var pddistrict: String
-    var pdid: Int
-    var location: IncidentLocation
     var address: String
-    var descript: String
+    var category: String
+    var date: String
     var dayofweek: String
+    var descript: String
+    var incidntnum: String
+    var pddistrict: String
+    var pdid: String
     var resolution: String
-    var date: NSDate
-    var y: Double
-    var x: Double
-    var incidntnum: Int
+    var time: String
+    var x: String
+    var y: String
     
-    init(time: NSDate, category: String, pddistrict: String, pdid: Int, location: IncidentLocation, address: String, descript: String, dayofweek: String, resolution: String, date: NSDate, y: Double, x: Double, incidntnum: Int) {
-        self.time = time
+    init(address: String, category: String, date: String, dayofweek: String, descript: String, incidntnum: String, pddistrict: String, pdid: String, resolution: String, time: String, x: String, y: String) {
+        self.address = address
         self.category = category
+        self.date = date
+        self.dayofweek = dayofweek
+        self.descript = descript
+        self.incidntnum = incidntnum
         self.pddistrict = pddistrict
         self.pdid = pdid
-        self.location = location
-        self.address = address
-        self.descript = descript
-        self.dayofweek = dayofweek
         self.resolution = resolution
-        self.date = date
-        self.y = y
+        self.time = time
         self.x = x
-        self.incidntnum = incidntnum
+        self.y = y
+    }
+    
+    init(json: JSON) {
+        self.address = json["address"].stringValue
+        self.category = json["category"].stringValue
+        self.date = json["date"].stringValue
+        self.dayofweek = json["dayofweek"].stringValue
+        self.descript = json["descript"].stringValue
+        self.incidntnum = json["incidntnum"].stringValue
+        self.pddistrict = json["pddistrict"].stringValue
+        self.pdid = json["pdid"].stringValue
+        self.resolution = json["resolution"].stringValue
+        self.time = json["time"].stringValue
+        self.x = json["x"].stringValue
+        self.y = json["y"].stringValue
     }
 }

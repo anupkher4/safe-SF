@@ -13,13 +13,15 @@
 		518606641D1E79B000624540 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 518606631D1E79B000624540 /* Assets.xcassets */; };
 		518606671D1E79B000624540 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 518606651D1E79B000624540 /* LaunchScreen.storyboard */; };
 		518606721D1E7A4B00624540 /* Incident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518606711D1E7A4B00624540 /* Incident.swift */; };
-		518606741D1E835500624540 /* IncidentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518606731D1E835500624540 /* IncidentLocation.swift */; };
-		518606761D1E843000624540 /* IncidentHumanAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518606751D1E843000624540 /* IncidentHumanAddress.swift */; };
 		518606781D1E85CB00624540 /* SocrataEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518606771D1E85CB00624540 /* SocrataEndpoints.swift */; };
 		518821091D20E7CE005228E3 /* IncidentAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518821081D20E7CE005228E3 /* IncidentAnnotation.swift */; };
+		51A854EA1D2245B6001F293C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A854E91D2245B6001F293C /* APIManager.swift */; };
+		51A854EC1D224C42001F293C /* IncidentFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A854EB1D224C42001F293C /* IncidentFilters.swift */; };
+		D25026209232E448036CD950 /* Pods_SafeSF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5E6AF1A16B6CD81CFDFA0D /* Pods_SafeSF.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E5E6AF1A16B6CD81CFDFA0D /* Pods_SafeSF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SafeSF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		518606591D1E79B000624540 /* SafeSF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeSF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5186065C1D1E79B000624540 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5186065E1D1E79B000624540 /* IncidentMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentMapViewController.swift; sourceTree = "<group>"; };
@@ -28,10 +30,12 @@
 		518606661D1E79B000624540 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		518606681D1E79B000624540 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		518606711D1E7A4B00624540 /* Incident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Incident.swift; sourceTree = "<group>"; };
-		518606731D1E835500624540 /* IncidentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentLocation.swift; sourceTree = "<group>"; };
-		518606751D1E843000624540 /* IncidentHumanAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentHumanAddress.swift; sourceTree = "<group>"; };
 		518606771D1E85CB00624540 /* SocrataEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocrataEndpoints.swift; sourceTree = "<group>"; };
 		518821081D20E7CE005228E3 /* IncidentAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentAnnotation.swift; sourceTree = "<group>"; };
+		51A854E91D2245B6001F293C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		51A854EB1D224C42001F293C /* IncidentFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentFilters.swift; sourceTree = "<group>"; };
+		69BAE7315E7B0F23F8F303D4 /* Pods-SafeSF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeSF.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafeSF/Pods-SafeSF.release.xcconfig"; sourceTree = "<group>"; };
+		8AE8B742FAB7E21A9EF0A034 /* Pods-SafeSF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeSF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafeSF/Pods-SafeSF.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25026209232E448036CD950 /* Pods_SafeSF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +55,8 @@
 			children = (
 				5186065B1D1E79B000624540 /* SafeSF */,
 				5186065A1D1E79B000624540 /* Products */,
+				AFB4330C03052F5197003A9D /* Pods */,
+				81960D5B9E755DA09CB9CD89 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,11 +71,11 @@
 		5186065B1D1E79B000624540 /* SafeSF */ = {
 			isa = PBXGroup;
 			children = (
+				51A854E81D2245A1001F293C /* APILayer */,
 				518606701D1E79F100624540 /* Models */,
 				5186066F1D1E79E800624540 /* Views */,
 				5186066E1D1E79DD00624540 /* Controllers */,
 				5186065C1D1E79B000624540 /* AppDelegate.swift */,
-				5186065E1D1E79B000624540 /* IncidentMapViewController.swift */,
 				518606601D1E79B000624540 /* Main.storyboard */,
 				518606631D1E79B000624540 /* Assets.xcassets */,
 				518606651D1E79B000624540 /* LaunchScreen.storyboard */,
@@ -80,6 +87,7 @@
 		5186066E1D1E79DD00624540 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5186065E1D1E79B000624540 /* IncidentMapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -95,12 +103,36 @@
 			isa = PBXGroup;
 			children = (
 				518606711D1E7A4B00624540 /* Incident.swift */,
-				518606731D1E835500624540 /* IncidentLocation.swift */,
-				518606751D1E843000624540 /* IncidentHumanAddress.swift */,
 				518606771D1E85CB00624540 /* SocrataEndpoints.swift */,
 				518821081D20E7CE005228E3 /* IncidentAnnotation.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		51A854E81D2245A1001F293C /* APILayer */ = {
+			isa = PBXGroup;
+			children = (
+				51A854E91D2245B6001F293C /* APIManager.swift */,
+				51A854EB1D224C42001F293C /* IncidentFilters.swift */,
+			);
+			name = APILayer;
+			sourceTree = "<group>";
+		};
+		81960D5B9E755DA09CB9CD89 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E5E6AF1A16B6CD81CFDFA0D /* Pods_SafeSF.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFB4330C03052F5197003A9D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8AE8B742FAB7E21A9EF0A034 /* Pods-SafeSF.debug.xcconfig */,
+				69BAE7315E7B0F23F8F303D4 /* Pods-SafeSF.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5186066B1D1E79B000624540 /* Build configuration list for PBXNativeTarget "SafeSF" */;
 			buildPhases = (
+				EA8F2FEC7E0DCA84F571D3A5 /* [CP] Check Pods Manifest.lock */,
 				518606551D1E79B000624540 /* Sources */,
 				518606561D1E79B000624540 /* Frameworks */,
 				518606571D1E79B000624540 /* Resources */,
+				3218471D941418D0271E7DA3 /* [CP] Embed Pods Frameworks */,
+				70A0C43D2BF3F51B2CF2EEA1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,17 +205,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3218471D941418D0271E7DA3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SafeSF/Pods-SafeSF-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70A0C43D2BF3F51B2CF2EEA1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SafeSF/Pods-SafeSF-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA8F2FEC7E0DCA84F571D3A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		518606551D1E79B000624540 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				518606741D1E835500624540 /* IncidentLocation.swift in Sources */,
+				51A854EA1D2245B6001F293C /* APIManager.swift in Sources */,
 				518606781D1E85CB00624540 /* SocrataEndpoints.swift in Sources */,
 				5186065F1D1E79B000624540 /* IncidentMapViewController.swift in Sources */,
-				518606761D1E843000624540 /* IncidentHumanAddress.swift in Sources */,
 				518606721D1E7A4B00624540 /* Incident.swift in Sources */,
 				5186065D1D1E79B000624540 /* AppDelegate.swift in Sources */,
+				51A854EC1D224C42001F293C /* IncidentFilters.swift in Sources */,
 				518821091D20E7CE005228E3 /* IncidentAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +375,7 @@
 		};
 		5186066C1D1E79B000624540 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8AE8B742FAB7E21A9EF0A034 /* Pods-SafeSF.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -306,6 +390,7 @@
 		};
 		5186066D1D1E79B000624540 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69BAE7315E7B0F23F8F303D4 /* Pods-SafeSF.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
