@@ -13,8 +13,10 @@ import CoreLocation
 class IncidentMapViewController: UIViewController {
     
     // San Francisco map coordinates
-    let initialLat = 37.783333
-    let initialLong = -122.416667
+    let initialLocation = CLLocation(latitude: 37.783333, longitude: -122.416667)
+    
+    // ApiManager instance
+    let apiManager = APIManager()
 
     @IBOutlet var incidentMapView: MKMapView!
     
@@ -24,7 +26,29 @@ class IncidentMapViewController: UIViewController {
         
         incidentMapView.delegate = self
         
-        showOnMap(latitude: initialLat, longitude: initialLong, mapToShow: incidentMapView)
+        showOnMap(location: initialLocation, mapToShow: incidentMapView)
+        
+        apiManager.getIncidentReports(completion: { incidents in
+            guard let allIncidents = incidents else {
+                print("No incidents to show")
+                return
+            }
+            for incident in allIncidents {
+                let title = incident.category
+                let subtitle = incident.descript
+                let x = incident.x
+                let y = incident.y
+                guard let lat = CLLocationDegrees(y), let long = CLLocationDegrees(x) else {
+                    print("Could not retrieve incident coordinates")
+                    return
+                }
+                let incidentLocation = CLLocation(latitude: lat, longitude: long)
+                let coordinates = CLLocationCoordinate2DMake(incidentLocation.coordinate.latitude, incidentLocation.coordinate.longitude)
+                let annotation = IncidentAnnotation(coordinate: coordinates, title: title, subtitle: subtitle)
+                self.incidentMapView.addAnnotation(annotation)
+            }
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,21 +104,21 @@ extension IncidentMapViewController: MKMapViewDelegate, CLLocationManagerDelegat
     }
     
     // Map helper functions
-    func showOnMap(latitude lat: CLLocationDegrees?, longitude long: CLLocationDegrees?, mapToShow map: MKMapView?) {
+    func showOnMap(location initialLocation: CLLocation?, mapToShow map: MKMapView?) {
         guard let mapView = map else {
             print("Passed in map object is nil")
             return
         }
-        guard let mapLat = lat, let mapLong = long else {
+        guard let location = initialLocation else {
             print("Invalid coordinates for map")
             return
         }
         
-        let mapCenter = CLLocationCoordinate2D(latitude: mapLat, longitude: mapLong)
+        let mapCenter = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         
-        let mapSpan = MKCoordinateSpan(latitudeDelta: 0.07, longitudeDelta: 0.09)
+        let mapSpan = MKCoordinateSpanMake(0.07, 0.09)
         
-        mapView.region = MKCoordinateRegion(center: mapCenter, span: mapSpan)
+        mapView.region = MKCoordinateRegionMake(mapCenter, mapSpan)
     }
     
     // CLLocationManagerDelegate delegate methods

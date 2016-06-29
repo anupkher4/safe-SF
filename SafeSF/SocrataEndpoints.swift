@@ -11,7 +11,7 @@ import Foundation
 struct SocrataEndpoints {
     
     struct SFPDIncidentsEndpoint {
-        static let baseEndpoint = "https://data.sfgov.org/resource/cuks-n6tp.json"
+        static let baseEndpoint = "https://data.sfgov.org/resource/cuks-n6tp.json?$limit=10"
     }
     
 }

@@ -31,6 +31,7 @@ class APIManager {
                 switch response.result {
                 case .Success(let value):
                     let json = JSON(value)
+                    //print("Response from server: \(json)")
                     // Loop over incidents
                     for (_, subJson):(String, JSON) in json {
                         let incident = Incident(json: subJson)
