@@ -17,6 +17,7 @@
 		518821091D20E7CE005228E3 /* IncidentAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518821081D20E7CE005228E3 /* IncidentAnnotation.swift */; };
 		51A854EA1D2245B6001F293C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A854E91D2245B6001F293C /* APIManager.swift */; };
 		51A854EC1D224C42001F293C /* IncidentFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A854EB1D224C42001F293C /* IncidentFilters.swift */; };
+		51E9EF6A1D24F00600CDD839 /* IncidentOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E9EF691D24F00600CDD839 /* IncidentOverlay.swift */; };
 		D25026209232E448036CD950 /* Pods_SafeSF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E5E6AF1A16B6CD81CFDFA0D /* Pods_SafeSF.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		518821081D20E7CE005228E3 /* IncidentAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentAnnotation.swift; sourceTree = "<group>"; };
 		51A854E91D2245B6001F293C /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		51A854EB1D224C42001F293C /* IncidentFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentFilters.swift; sourceTree = "<group>"; };
+		51E9EF691D24F00600CDD839 /* IncidentOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncidentOverlay.swift; sourceTree = "<group>"; };
 		69BAE7315E7B0F23F8F303D4 /* Pods-SafeSF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeSF.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafeSF/Pods-SafeSF.release.xcconfig"; sourceTree = "<group>"; };
 		8AE8B742FAB7E21A9EF0A034 /* Pods-SafeSF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeSF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafeSF/Pods-SafeSF.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 				518606711D1E7A4B00624540 /* Incident.swift */,
 				518606771D1E85CB00624540 /* SocrataEndpoints.swift */,
 				518821081D20E7CE005228E3 /* IncidentAnnotation.swift */,
+				51E9EF691D24F00600CDD839 /* IncidentOverlay.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51E9EF6A1D24F00600CDD839 /* IncidentOverlay.swift in Sources */,
 				51A854EA1D2245B6001F293C /* APIManager.swift in Sources */,
 				518606781D1E85CB00624540 /* SocrataEndpoints.swift in Sources */,
 				5186065F1D1E79B000624540 /* IncidentMapViewController.swift in Sources */,
