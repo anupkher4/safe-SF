@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class APIManager {
     let appToken = "QbuTKtVG9a2vvjoiiBaURnopW"
-    let endpoint = SocrataEndpoints.SFPDIncidentsEndpoint.limitEndpoint
+    let endpoint = SocrataEndpoints.SFPDIncidentsEndpoint.baseEndpoint
     
     func getIncidentReports(completion: ([Incident])? -> ()) {
         
@@ -69,8 +69,13 @@ class APIManager {
         let formattedOneMonthAgo = jsonDateFormatter.stringFromDate(oneMonthAgo)
         
         // Build query for fetching incidents from last month till today
-        let query = "?$where=date between '\(formattedOneMonthAgo)' and '\(formattedToday)'&$order=date DESC&$limit=\(50)"
+        let query = "?$where=date between '\(formattedOneMonthAgo)' and '\(formattedToday)'&$order=date DESC&$limit=50"
         let newEndpoint = "\(SocrataEndpoints.SFPDIncidentsEndpoint.baseEndpoint)\(query)"
+        
+        guard let formattedEndpoint = newEndpoint.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
+            print("Could not format url string")
+            return
+        }
         
         var allIncidents = [Incident]()
         
@@ -81,7 +86,7 @@ class APIManager {
         
         print("\(newEndpoint)")
         
-        Alamofire.request(.GET, newEndpoint, headers: headers).responseJSON(completionHandler: {
+        Alamofire.request(.GET, formattedEndpoint, parameters: nil, encoding: .JSON, headers: headers).responseJSON(completionHandler: {
             response in
             
             switch response.result {

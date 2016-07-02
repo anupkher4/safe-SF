@@ -15,14 +15,14 @@ class IncidentAnnotation: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var pincolor: UIColor?
+    var incidentDetail: Incident?
     
-    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, color: UIColor?) {
+    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, color: UIColor?, detail: Incident?) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
         self.pincolor = color
-        
-        super.init()
+        self.incidentDetail = detail
     }
     
 }
