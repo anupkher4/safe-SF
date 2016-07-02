@@ -46,8 +46,6 @@ class IncidentMapViewController: UIViewController {
                 return
             }
             
-            print("No of incidents: \(allIncidents.count)")
-            
             self.returnedIncidents = allIncidents
             
             // Calculate incident counts for each district
@@ -66,10 +64,9 @@ class IncidentMapViewController: UIViewController {
             // Sort district names by count
             self.sortedDistricts = self.districtIncidentCounts.sortedKeysByValue(<)
             
-            //let caseIndex = self.sortedDistricts.count/self.noOfColors
-            
             // Add a pin on map for each incident
             for incident in self.returnedIncidents {
+                
                 let district = incident.pddistrict
                 let title = incident.category
                 let subtitle = incident.descript
@@ -80,12 +77,14 @@ class IncidentMapViewController: UIViewController {
                     return
                 }
                 
+                // Construct annotation object
                 let pinColor = self.colorForDistrictCount(districtName: district)
                 let incidentLocation = CLLocation(latitude: lat, longitude: long)
                 let coordinates = CLLocationCoordinate2DMake(incidentLocation.coordinate.latitude, incidentLocation.coordinate.longitude)
                 
                 let annotation = IncidentAnnotation(coordinate: coordinates, title: title, subtitle: subtitle, color: pinColor, detail: incident)
                 
+                // Add annotation to the map
                 self.incidentMapView.addAnnotation(annotation)
             }
             
@@ -99,6 +98,7 @@ class IncidentMapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // Helper function for returning
     func colorForDistrictCount(districtName name: String) -> UIColor {
         
         if let districtIndex = self.sortedDistricts.indexOf(name) {
@@ -152,19 +152,10 @@ extension IncidentMapViewController: MKMapViewDelegate, CLLocationManagerDelegat
                 } else {
                     pinView?.pinTintColor = UIColor.purpleColor()
                 }
+                
                 pinView?.animatesDrop = false
                 pinView?.canShowCallout = true
                 
-                // Customizing the callout by adding accessory views
-                
-                // Adding a detail disclosure button to the callout on the right
-                let rightButton: UIButton = UIButton(type: .DetailDisclosure)
-                rightButton.addTarget(nil, action: nil, forControlEvents: .TouchUpInside)
-                pinView?.rightCalloutAccessoryView = rightButton
-                
-                // Adding a custom image to the callout on the left
-//                let calloutCustomImage: UIImageView = UIImageView(image: UIImage(named: "SFPDPatch"))
-//                pinView?.leftCalloutAccessoryView = calloutCustomImage
             } else {
                 pinView?.annotation = annotation
             }
@@ -176,11 +167,6 @@ extension IncidentMapViewController: MKMapViewDelegate, CLLocationManagerDelegat
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // Show detail view for right accessory button
-        
-        if let currentAnnotaion = view.annotation as? IncidentAnnotation {
-            // Perform segue to detail view
-            
-        }
         
     }
     
@@ -205,6 +191,7 @@ extension IncidentMapViewController: MKMapViewDelegate, CLLocationManagerDelegat
     // CLLocationManagerDelegate delegate methods
 }
 
+// Dictionary extension for sorting keys by value
 extension Dictionary {
     func sortedKeys(isOrderedBefore:(Key,Key) -> Bool) -> [Key] {
         return Array(self.keys).sort(isOrderedBefore)
