@@ -101,7 +101,7 @@ class IncidentMapViewController: UIViewController {
     // Helper function for returning
     func colorForDistrictCount(districtName name: String) -> UIColor {
         
-        if let districtIndex = self.sortedDistricts.indexOf(name) {
+        if let districtIndex = self.sortedDistricts.index(of: name) {
             switch Int(districtIndex) {
             case 0:
                 return UIColor(red: 1.00, green: 0.00, blue: 0.00, alpha: 1.0)
@@ -121,7 +121,7 @@ class IncidentMapViewController: UIViewController {
                 return UIColor(red: 0.65, green: 1.00, blue: 0.00, alpha: 1.0)
             }
         } else {
-            return UIColor.purpleColor()
+            return UIColor.purple
         }
         
     }
@@ -132,16 +132,16 @@ extension IncidentMapViewController: MKMapViewDelegate, CLLocationManagerDelegat
     
     // MKMapView Delegate delegate methods
     // Annotation methods
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // If the annotation is the user location, just return nil
-        if annotation.isKindOfClass(MKUserLocation) {
+        if annotation.isKind(of: MKUserLocation.self) {
             return nil
         }
         
         // Handling custom annotations
-        if annotation.isKindOfClass(IncidentAnnotation) {
+        if annotation.isKind(of: IncidentAnnotation.self) {
             // Tring to dequeue an existing pin view first
-            var pinView: MKPinAnnotationView? = mapView.dequeueReusableAnnotationViewWithIdentifier("IncidentPinAnnotationView") as? MKPinAnnotationView
+            var pinView: MKPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: "IncidentPinAnnotationView") as? MKPinAnnotationView
 
             if pinView == nil {
                 pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "IncidentPinAnnotationView")
@@ -150,7 +150,7 @@ extension IncidentMapViewController: MKMapViewDelegate, CLLocationManagerDelegat
                         pinView?.pinTintColor = pincolor
                     }
                 } else {
-                    pinView?.pinTintColor = UIColor.purpleColor()
+                    pinView?.pinTintColor = UIColor.purple
                 }
                 
                 pinView?.animatesDrop = false
@@ -165,7 +165,7 @@ extension IncidentMapViewController: MKMapViewDelegate, CLLocationManagerDelegat
         return nil
     }
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // Show detail view for right accessory button
         
     }
@@ -193,11 +193,11 @@ extension IncidentMapViewController: MKMapViewDelegate, CLLocationManagerDelegat
 
 // Dictionary extension for sorting keys by value
 extension Dictionary {
-    func sortedKeys(isOrderedBefore:(Key,Key) -> Bool) -> [Key] {
-        return Array(self.keys).sort(isOrderedBefore)
+    func sortedKeys(_ isOrderedBefore:(Key,Key) -> Bool) -> [Key] {
+        return Array(self.keys).sorted(by: isOrderedBefore)
     }
     
-    func sortedKeysByValue(isOrderedBefore:(Value, Value) -> Bool) -> [Key] {
+    func sortedKeysByValue(_ isOrderedBefore:(Value, Value) -> Bool) -> [Key] {
         return sortedKeys {
             isOrderedBefore(self[$0]!, self[$1]!)
         }

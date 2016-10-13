@@ -14,7 +14,7 @@ class APIManager {
     let appToken = "QbuTKtVG9a2vvjoiiBaURnopW"
     let endpoint = SocrataEndpoints.SFPDIncidentsEndpoint.baseEndpoint
     
-    func getIncidentReports(completion: ([Incident])? -> ()) {
+    func getIncidentReports(_ completion: @escaping (([Incident])?) -> ()) {
         
         var allIncidents = [Incident]()
         
@@ -23,11 +23,12 @@ class APIManager {
             "X-App-Token" : appToken
         ]
         
-        Alamofire.request(.GET, endpoint, headers: headers).responseJSON(completionHandler: {
+        
+        Alamofire.request(endpoint, headers: headers).responseJSON(completionHandler: {
             response in
             
             switch response.result {
-            case .Success(let value):
+            case .success(let value):
                 let json = JSON(value)
                 //print("Response from server: \(json)")
                 // Loop over incidents
@@ -36,43 +37,39 @@ class APIManager {
                     allIncidents.append(incident)
                 }
                 completion(allIncidents)
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
                 completion(nil)
             }
         })
     }
     
-    func getLastMonthsIncidents(completion: ([Incident])? -> ()) {
+    func getLastMonthsIncidents(_ completion: @escaping (([Incident])?) -> ()) {
         
         // Get today's date
-        let today = NSDate()
+        let today = Date()
         
         // Set-up calender to calculate 1 month ago from now
-        let gregorian = NSCalendar.init(calendarIdentifier: NSCalendarIdentifierGregorian)
-        let offsetComponents = NSDateComponents()
+        let gregorian = Calendar.init(identifier: Calendar.Identifier.gregorian)
+        var offsetComponents = DateComponents()
         offsetComponents.month = -1
-        guard let greg = gregorian else {
-            print("Invalid calender instance")
-            return
-        }
-        guard let oneMonthAgo = greg.dateByAddingComponents(offsetComponents, toDate: today, options: .MatchFirst) else {
+        guard let oneMonthAgo = (gregorian as NSCalendar).date(byAdding: offsetComponents, to: today, options: .matchFirst) else {
             print("Could not get a month ago")
             return
         }
         
         // Format the date for SODA API call
-        let jsonDateFormatter = NSDateFormatter()
+        let jsonDateFormatter = DateFormatter()
         jsonDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         
-        let formattedToday = jsonDateFormatter.stringFromDate(today)
-        let formattedOneMonthAgo = jsonDateFormatter.stringFromDate(oneMonthAgo)
+        let formattedToday = jsonDateFormatter.string(from: today)
+        let formattedOneMonthAgo = jsonDateFormatter.string(from: oneMonthAgo)
         
         // Build query for fetching incidents from last month till today
         let query = "?$where=date between '\(formattedOneMonthAgo)' and '\(formattedToday)'&$order=date DESC&$limit=50"
         let newEndpoint = "\(SocrataEndpoints.SFPDIncidentsEndpoint.baseEndpoint)\(query)"
         
-        guard let formattedEndpoint = newEndpoint.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) else {
+        guard let formattedEndpoint = newEndpoint.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
             print("Could not format url string")
             return
         }
@@ -86,11 +83,11 @@ class APIManager {
         
         print("\(newEndpoint)")
         
-        Alamofire.request(.GET, formattedEndpoint, parameters: nil, encoding: .JSON, headers: headers).responseJSON(completionHandler: {
+        Alamofire.request(formattedEndpoint, headers: headers).responseJSON(completionHandler: {
             response in
             
             switch response.result {
-            case .Success(let value):
+            case .success(let value):
                 
                 let json = JSON(value)
                 
@@ -100,7 +97,7 @@ class APIManager {
                     allIncidents.append(incident)
                 }
                 completion(allIncidents)
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
                 completion(nil)
             }
